@@ -4,6 +4,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,8 @@ import java.util.Map;
 @org.springframework.stereotype.Service
 public class APIService {
 
-    private final String API_KEY = "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";
+    Dotenv dotenv = Dotenv.load();
+    String API_KEY = dotenv.get("GROQ_API_KEY");
     private final String URL = "https://api.groq.com/openai/v1/chat/completions";
 
     public String callAI(String prompt) {
